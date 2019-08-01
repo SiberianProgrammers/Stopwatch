@@ -77,8 +77,7 @@ QString Stopwatch::text() const
 
     if (hours > 0) {
         return QString::number(hours) % "h "
-               % formatTwoDigits(min) % "m "
-               % formatTwoDigits(sec) % "s";
+               % formatTwoDigits(min) % "m ";
     } else if (min > 0) {
         return QString::number(min)   % "m "
                % formatTwoDigits(sec) % "s";

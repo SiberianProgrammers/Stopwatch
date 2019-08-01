@@ -6,70 +6,21 @@ Window {
 
     visible: true
     title: qsTr("Секундомер")
-    width: maximumWidth
-    height: maximumHeight
-    maximumWidth: column.width + 2*Consts.margin
-    minimumWidth: maximumWidth
-    maximumHeight: column.height + 3*Consts.margin
-    minimumHeight: maximumHeight
+    width: 300
+    height: 300
 
-    Column {
-        id: column
+    ToggleButton {
+        id: toggleButton
+    }
 
-        width: 250*dp
-        spacing: 2*Consts.margin
+    ClearButton {
+        id: clearButton
         anchors {
-            top: parent.top
-            left: parent.left
-            topMargin: 2*Consts.margin
-            leftMargin: Consts.margin
+            centerIn: toggleButton
+            verticalCenterOffset: (0.5*toggleButton.width + 0.0*width)* Math.cos(Math.PI/4)
+            horizontalCenterOffset: anchors.verticalCenterOffset
         }
-
-        Text {
-            id: timerText
-
-            text: Stopwatch.text
-            font.pixelSize: Consts.fontBig
-            horizontalAlignment: Text.AlignHCenter
-            width: parent.width
-        }
-
-        Item {
-            width: parent.width
-            height: toggleButton.height
-
-            Button {
-                id: toggleButton
-
-                text: Stopwatch.isActive
-                      ? qsTr("Stop")
-                      : qsTr("Start")
-                color: Stopwatch.isActive
-                       ? Consts.colorRed
-                       : Consts.colorGreen
-                anchors {
-                    left: clearButton.right
-                    right: parent.right
-                    leftMargin: Consts.margin
-                }
-
-                onClicked: {
-                    Stopwatch.toggle();
-                }
-            }
-
-            Button {
-                id: clearButton
-
-                text: "X"// qsTr("Clear")
-
-                onClicked: {
-                    Stopwatch.clear();
-                    Stopwatch.stop();
-                }
-            }
-        }
-    } // Column { id: column
+    }
 
     Timer {
         id: doubleClickedTimer
