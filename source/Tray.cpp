@@ -2,7 +2,7 @@
 #include "Tray.h"
 #include "Stopwatch.h"
 
-#include <QCoreApplication>
+#include <QApplication>
 #include <QAction>
 #include <QSystemTrayIcon>
 #include <QMenu>

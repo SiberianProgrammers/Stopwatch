@@ -1,6 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>RunButton.qml</file>
+        <file>Button.qml</file>
+        <file>Consts.qml</file>
+        <file>qmldir</file>
     </qresource>
 </RCC>

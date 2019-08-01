@@ -18,7 +18,7 @@ class Stopwatch: public QObject
         // Get
         //----------------------------------------------------------------------
         /** Возвращает текстовое значение таймера. */
-        inline QString text() const { return _text; }
+        QString text() const;
 
         /** Возвращает количество отмеренных секунд. */
         inline int seconds() const { return _seconds; }
@@ -49,11 +49,9 @@ class Stopwatch: public QObject
 
     private:
         Stopwatch();
+        ~Stopwatch();
 
         void onTimeout();
-
-        /** Обновляет текстовое представление таймера. */
-        void updateText();
 
         /** Возвращает текст из двух чисел (00,05, 20 и т.п.). */
         static QString formatTwoDigits(int number);
@@ -64,6 +62,5 @@ class Stopwatch: public QObject
 
     private:
         QTimer _timer;
-        QString _text;
         int _seconds = 0.0;
 };

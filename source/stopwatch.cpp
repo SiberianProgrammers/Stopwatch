@@ -1,9 +1,10 @@
 /// @author M. Serebrennikov
 #include "Stopwatch.h"
+#include "Settings.h"
 
 #include <QStringBuilder>
 #include <QTimer>
-#include <QDebug>
+#include <QTime>
 
 Stopwatch* Stopwatch::instance()
 {
@@ -12,24 +13,22 @@ Stopwatch* Stopwatch::instance()
 }
 
 //------------------------------------------------------------------------------
-QString Stopwatch::formatTwoDigits(int number)
-{
-    return number > 9
-           ? QString::number(number)
-           : "0" % QString::number(number);
-}
-
-//------------------------------------------------------------------------------
 Stopwatch::Stopwatch()
+    : _seconds(sp::Settings::get("currentTimer", 0).toInt())
 {
     _timer.setInterval(1000);
     connect(&_timer, &QTimer::timeout, this, &Stopwatch::onTimeout);
 }
 
 //------------------------------------------------------------------------------
+Stopwatch::~Stopwatch()
+{
+    sp::Settings::set("currentTimer", _seconds);
+}
+
+//------------------------------------------------------------------------------
 void Stopwatch::start()
 {
-    qDebug() << "start";
     _timer.start();
     emit isActiveChanged();
 }
@@ -37,7 +36,6 @@ void Stopwatch::start()
 //------------------------------------------------------------------------------
 void Stopwatch::stop()
 {
-    qDebug() << "stop";
     _timer.stop();
     emit isActiveChanged();
 }
@@ -56,34 +54,36 @@ void Stopwatch::toggle()
 void Stopwatch::clear()
 {
     _seconds = 0.0;
-    updateText();
     emit secondsChanged();
 }
 
 //------------------------------------------------------------------------------
 void Stopwatch::onTimeout()
 {
+    QTime _time;
+    _time.start();
+    _time.elapsed();
+
     _seconds++;
-    updateText();
     emit secondsChanged();
 }
 
 //------------------------------------------------------------------------------
-void Stopwatch::updateText()
+QString Stopwatch::text() const
 {
     int sec = _seconds % 60;
     int min = _seconds % 3600 / 60;
     int hours = _seconds / 3600;
 
     if (hours > 0) {
-        _text =  QString::number(hours) % ":"
-                 % formatTwoDigits(min) % ":"
-                 % formatTwoDigits(sec);
+        return QString::number(hours) % "h "
+               % formatTwoDigits(min) % "m "
+               % formatTwoDigits(sec) % "s";
     } else if (min > 0) {
-        _text =  QString::number(min) % ":"
-                 % formatTwoDigits(sec);
+        return QString::number(min)   % "m "
+               % formatTwoDigits(sec) % "s";
     } else {
-        _text =  QString::number(sec);
+        return QString::number(sec)   % "s";
     }
 }
 
@@ -92,7 +92,14 @@ void Stopwatch::setSeconds(int seconds)
 {
     if (_seconds != seconds) {
         _seconds = seconds;
-        updateText();
         emit secondsChanged();
     }
+}
+
+//------------------------------------------------------------------------------
+QString Stopwatch::formatTwoDigits(int number)
+{
+    return number > 9
+           ? QString::number(number)
+           : "0" % QString::number(number);
 }

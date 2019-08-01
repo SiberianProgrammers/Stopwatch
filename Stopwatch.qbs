@@ -1,12 +1,9 @@
 import qbs
 
 Project {
-    references: [
-        "sp_qt_libs"
-    ]
-
     CppApplication {
         files: [
+            "Stopwatch.rc",
             "include/Stopwatch.h",
             "include/Tray.h",
             "qml/images.qrc",
@@ -14,12 +11,13 @@ Project {
             "source/Tray.cpp",
             "source/main.cpp",
             "qml/qml.qrc",
+            "sp_qt_libs/include/Settings.h",
+            "sp_qt_libs/source/Settings.cpp",
         ]
 
         cpp.cxxLanguageVersion: "c++11"
-        cpp.includePaths: "include"
+        cpp.includePaths: ["include", "sp_qt_libs/include"]
 
-        Depends { name: "sp_qt_libs" }
         Depends { name: "Qt.quick" }
         Depends { name: "Qt.widgets" }
 
