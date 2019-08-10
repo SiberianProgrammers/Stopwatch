@@ -1,7 +1,9 @@
 import QtQuick 2.12
+import "../Components"
+import ".."
 
 RoundButton {
-    id: toggleButton
+    id: _toggleButton
     
     color: Stopwatch.isActive
            ? Consts.colorRed

@@ -1,2 +1,0 @@
-module Stopwatch
-singleton Consts 1.0 Consts.qml

@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
     app.setWindowIcon(QIcon(":/images/IdleIcon.png"));
 
     QQmlApplicationEngine engine;
+    engine.addImportPath("qrc:///");
     const QUrl url(QStringLiteral("qrc:/main.qml"));
 
     auto context = engine.rootContext();

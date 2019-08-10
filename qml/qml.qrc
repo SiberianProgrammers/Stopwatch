@@ -1,10 +1,14 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>RoundButton.qml</file>
-        <file>Consts.qml</file>
-        <file>qmldir</file>
-        <file>ToggleButton.qml</file>
-        <file>ClearButton.qml</file>
+        <file>Components/RoundButton.qml</file>
+        <file>Stopwatch/ToggleButton.qml</file>
+        <file>Stopwatch/ClearButton.qml</file>
+        <file>Stopwatch/StopwatchItem.qml</file>
+        <file>Timer/TimerItem.qml</file>
+        <file>Components/qmldir</file>
+        <file>Components/Consts.qml</file>
+        <file>Stopwatch/qmldir</file>
+        <file>Timer/qmldir</file>
     </qresource>
 </RCC>

@@ -1,12 +1,16 @@
 import qbs
 
 Project {
-    CppApplication {
+    QtApplication {
+        property pathList qmlImportPaths: [
+            sourceDirectory + "/qml",
+        ]
+
         files: [
             "Stopwatch.rc",
             "include/Stopwatch.h",
             "include/Tray.h",
-            "qml/images.qrc",
+            "images/images.qrc",
             "source/Stopwatch.cpp",
             "source/Tray.cpp",
             "source/main.cpp",
@@ -15,7 +19,7 @@ Project {
             "sp_qt_libs/source/Settings.cpp",
         ]
 
-        cpp.cxxLanguageVersion: "c++11"
+        cpp.cxxLanguageVersion: "c++17"
         cpp.includePaths: ["include", "sp_qt_libs/include"]
 
         Depends { name: "Qt.quick" }
