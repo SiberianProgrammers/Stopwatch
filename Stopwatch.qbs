@@ -10,17 +10,17 @@ Project {
             "Stopwatch.rc",
             "include/Stopwatch.h",
             "include/Tray.h",
+            "include/Settings.h",
             "images/images.qrc",
             "source/Stopwatch.cpp",
             "source/Tray.cpp",
             "source/main.cpp",
+            "source/Settings.cpp",
             "qml/qml.qrc",
-            "sp_qt_libs/include/Settings.h",
-            "sp_qt_libs/source/Settings.cpp",
         ]
 
         cpp.cxxLanguageVersion: "c++17"
-        cpp.includePaths: ["include", "sp_qt_libs/include"]
+        cpp.includePaths: ["include"]
 
         Depends { name: "Qt.quick" }
         Depends { name: "Qt.widgets" }
