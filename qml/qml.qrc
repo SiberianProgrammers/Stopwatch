@@ -10,5 +10,7 @@
         <file>Components/Consts.qml</file>
         <file>Stopwatch/qmldir</file>
         <file>Timer/qmldir</file>
+        <file>Timer/TimerButton.qml</file>
+        <file>Components/DebugRectangle.qml</file>
     </qresource>
 </RCC>

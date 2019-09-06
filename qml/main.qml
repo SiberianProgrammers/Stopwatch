@@ -1,4 +1,4 @@
-import QtQuick 2.12
+import QtQuick 2.13
 import QtQuick.Window 2.12
 import Timer 1.0
 import Stopwatch 1.0
@@ -11,11 +11,11 @@ Window {
     width: 300
     height: 300
 
-    StopwatchItem {
-        anchors.fill: parent
-    }
-
-    // TimerItem {
+    // StopwatchItem {
     //     anchors.fill: parent
     // }
+
+    TimerItem {
+        anchors.fill: parent
+    }
 }

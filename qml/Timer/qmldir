@@ -1,2 +1,2 @@
 module Timer
-Timer 1.0 Timer.qml
+TimerItem 1.0 TimerItem.qml

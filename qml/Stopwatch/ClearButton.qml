@@ -1,4 +1,4 @@
-import QtQuick 2.12
+import QtQuick 2.13
 import Components 1.0
 
 RoundButton {
