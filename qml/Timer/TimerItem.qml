@@ -37,15 +37,12 @@ Item {
         id: timersModel
 
         // Этап1
-        ListElement { text: "15 min"; percent: 0.0 }
-        ListElement { text: "20 min"; percent: 0.2 }
-        ListElement { text: "30 min"; percent: 0.6 }
-        ListElement { text: "40 min"; percent: 1.0 }
-
-        // Этап2
         // ListElement { text: "15 min"; percent: 0.0 }
         // ListElement { text: "20 min"; percent: 0.2 }
         // ListElement { text: "30 min"; percent: 0.6 }
         // ListElement { text: "40 min"; percent: 1.0 }
+
+        // Этап2
+        ListElement { text: "15 min"; percent: 0.0 }
     }
 }

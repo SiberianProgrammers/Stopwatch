@@ -18,30 +18,30 @@ Item {
         color: Consts.colorTimerButton[0]
 
         // Этап 1
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                statesItem.toggle();
-            }
-        }
-
-        // Этап 2
-        // Timer {
-        //     interval: 150
-        //     running: true
-        //     repeat: true
-        //     onTriggered: {
-        //         if (_timerButton.percent < 1.0) {
-        //             _timerButton.percent += 0.05;
-        //         }
-        //     }
-        // }
         // MouseArea {
         //     anchors.fill: parent
         //     onClicked: {
-        //         _timerButton.percent = 0.0
+        //         statesItem.toggle();
         //     }
         // }
+
+        // Этап 2
+        Timer {
+            interval: 150
+            running: true
+            repeat: true
+            onTriggered: {
+                if (_timerButton.percent < 1.0) {
+                    _timerButton.percent += 0.05;
+                }
+            }
+        }
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                _timerButton.percent = 0.0
+            }
+        }
 
         Text {
             id: textItem
@@ -59,6 +59,7 @@ Item {
             property double thickness: 0
             property double radius: width/2 - thickness/2
 
+            z: -1
             visible: false
             anchors {
                 top: parent.top
@@ -79,13 +80,16 @@ Item {
                 startY: arcItem.thickness/2
                 fillColor: "transparent"
                 strokeColor: Consts.colorTimerButton[1]
-                strokeWidth: arcItem.thickness/2
+                // strokeWidth: arcItem.thickness/2
+                strokeWidth: arcItem.thickness
 
                 PathAngleArc {
                     centerX: arcItem.width/2
                     centerY: arcItem.height/2
-                    radiusX: arcItem.radius - arcItem.thickness/4
-                    radiusY: arcItem.radius - arcItem.thickness/4
+                    // radiusX: arcItem.radius - arcItem.thickness/4
+                    // radiusY: arcItem.radius - arcItem.thickness/4
+                    radiusX: arcItem.radius
+                    radiusY: arcItem.radius
                     startAngle: 0
                     sweepAngle: 360
                 }
@@ -94,23 +98,23 @@ Item {
             ShapePath {
                 startX: arcItem.width/2
                 startY: arcItem.thickness/2
-                fillColor: "transparent"
+                fillColor: Consts.colorTimerButton[2]
                 strokeColor: Consts.colorTimerButton[2]
-                strokeWidth: arcItem.thickness
+                strokeWidth: 0
 
                 PathAngleArc {
                     id: pathAngleArc
 
                     centerX: arcItem.width/2
                     centerY: arcItem.height/2
-                    radiusX: arcItem.radius
-                    radiusY: arcItem.radius
+                    radiusX: arcItem.radius+arcItem.thickness/2
+                    radiusY: arcItem.radius+arcItem.thickness/2
 
                     // Вариант 1
-                    startAngle: 90-180*_timerButton.percent
-                    sweepAngle: 360*_timerButton.percent
-                    Behavior on startAngle { NumberAnimation { duration: 150 } }
-                    Behavior on sweepAngle { NumberAnimation { duration: 150 } }
+                     startAngle: 90-180*_timerButton.percent
+                     sweepAngle: 360*_timerButton.percent
+                     Behavior on startAngle { NumberAnimation { duration: 150 } }
+                     Behavior on sweepAngle { NumberAnimation { duration: 150 } }
 
                     // Вариант 2
                     // startAngle: -90
@@ -130,9 +134,9 @@ Item {
             id: statesItem
 
             // Этап1
-            state: "list"
+            // state: "list"
             // Этап2
-            // state: "full"
+            state: "full"
             states: [
                 State {
                     name: "list"
